@@ -1,0 +1,1 @@
+export const API_URL = "https://rizkyarifnur-example.glitch.me/api/Data";
