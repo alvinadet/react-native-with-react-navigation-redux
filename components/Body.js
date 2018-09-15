@@ -17,12 +17,9 @@ import axios from 'axios';
 import { API_URL } from '../consta/index';
 import { connect } from 'react-redux';
 import { allTodos } from '../Action';
+import { NavigationActions } from 'react-navigation';
 
 class Main extends Component {
-
-
-
-
   // getData = () => {
 
   //   //   axios.get(`https://rizkyarifnur-example.glitch.me/api/Data`)
@@ -38,19 +35,18 @@ class Main extends Component {
   // }
 
   getData = () => {
-    this.props.dispatch(allTodos())
-  }
+    this.props.dispatch(allTodos());
+  };
   //Disptatch Redux
 
   componentWillMount() {
-    this.getData()
+    this.getData();
   }
   _keyExtractor = (item, index) => item.id.toString();
 
   //idntifikasi id supaya jadi string
 
   render() {
-
     return (
       <Container>
         <Content>
@@ -59,33 +55,34 @@ class Main extends Component {
               data={this.props.todosReducer.todos}
               extraData={this.state}
               keyExtractor={this._keyExtractor}
-              renderItem={({ item }) => <Todos datum={item}
-                getData={this.getData} />}
+              renderItem={({ item }) => (
+                <Todos datum={item} getData={this.getData} />
+              )}
             />
-
           </List>
         </Content>
-        {/* <Fab
+        <Fab
           style={{ backgroundColor: '#5067FF' }}
           position="bottomRight"
-        // onPress={() => navigation.dispatch({ type: 'CreateData' })}
-        >
+          onPress={() =>
+            this.props.dispatch(
+              NavigationActions.navigate({ routeName: 'CreateData' })
+            )
+          }>
           <Icon name="add" />
-        </Fab> */}
-        {/* // this.props.navigation.navigate('CreateData') => sama saja seperti <Link> di react router */}
+        </Fab>
+        {/* {/* // this.props.navigation.navigate('CreateData') => sama saja seperti <Link> di react router */}
       </Container>
     );
   }
 }
-;
-
-const mapStatetoProps = (state) => ({
+const mapStatetoProps = state => ({
   todosReducer: state.todosReducer
-})
+});
 
 //todosReducer => combineReducers di app Reducers
 
-export default connect(mapStatetoProps)(Main)
+export default connect(mapStatetoProps)(Main);
 
 //main => nama class
 //map to props nama fungsi

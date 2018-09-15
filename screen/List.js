@@ -10,14 +10,8 @@ export default class componentName extends Component {
     return (
       <Container>
         <Main />
-        <Fab
-          style={{ backgroundColor: '#5067FF' }}
-          position="bottomRight"
-          onPress={() => this.props.navigation.navigate('CreateData')}>
-          <Icon name="add" />
-        </Fab>
-        {/* flatList sama seperti map di react JS, bedanya ini seperti senter */}
 
+        {/* flatList sama seperti map di react JS, bedanya ini seperti senter */}
       </Container>
     );
   }
